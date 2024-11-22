@@ -61,6 +61,7 @@ export default function UserRoutes(app) {
     const findCoursesForEnrolledUser = (req, res) => {
         let { userId } = req.params;
         if (userId === "current") {
+            console.log(req.session);
             const currentUser = req.session["currentUser"];
             if (!currentUser) {
                 res.sendStatus(401);
@@ -74,7 +75,7 @@ export default function UserRoutes(app) {
     const createCourse = (req, res) => {
         console.log("In createCourse routes.js");
         const currentUser = req.session["currentUser"];
-        console.log(currentUser);
+        console.log("currentUser:",currentUser);
         const newCourse = courseDao.createCourse(req.body);
         enrollmentsDao.enrollUserInCourse(currentUser._id, newCourse._id);
         res.json(newCourse);

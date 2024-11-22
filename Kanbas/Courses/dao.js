@@ -10,8 +10,6 @@ export function findCoursesForEnrolledUser(userId) {
 }
 export function createCourse(course) {
     const newCourse = { ...course, _id: Date.now().toString() };
-    console.log("In createCourse dao.js");
-    console.log(newCourse);
     Database.courses = [...Database.courses, newCourse];
     return newCourse;
 }
