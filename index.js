@@ -14,7 +14,8 @@ console.log(process.env.NETLIFY_URL)
 app.use(
     cors({
         credentials: true,
-        origin: process.env.NETLIFY_URL || "http://localhost:3000",
+        origin: process.env.NETLIFY_URL || "http://localhost:3000" || 
+        "https://a5--wonderful-cannoli-5646c0.netlify.app/",
     })
 );
 const sessionOptions = {
