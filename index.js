@@ -10,6 +10,7 @@ import ModuleRoutes from './Kanbas/Modules/routes.js';
 import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
 import EnrollementsRoutes from './Kanbas/Enrollments/route.js';
 const app = express();
+console.log(process.env.NETLIFY_URL)
 app.use(
     cors({
         credentials: true,
@@ -19,10 +20,7 @@ app.use(
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kanbas",
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
+    saveUninitialized: false
 };
 if (process.env.NODE_ENV !== "development") {
     sessionOptions.proxy = true;
