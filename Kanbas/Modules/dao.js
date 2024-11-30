@@ -1,33 +1,30 @@
 import Database from "../Database/index.js";
+import model from "./model.js";
 export function findModulesForCourse(courseId) {
-    const { modules } = Database;
-    return modules.filter((module) => module.course === courseId);
+    return model.find({ course: courseId });
+    // const { modules } = Database;
+    // return modules.filter((module) => module.course === courseId);
 }
 export function createModule(module) {
-    console.log("Before adding the module:", Database.modules.length) 
-    const newModule = { ...module, _id: Date.now().toString() };
+    // const newModule = { ...module, _id: Date.now().toString() };
     // Database.modules = [...Database.modules, newModule];
-    Database.modules.push(newModule);
-    console.log("New Module ID:", newModule._id)
-    console.log("After adding the module:", Database.modules.length) 
-    return newModule;
+    // Database.modules.push(newModule);
+    // return newModule;
+    delete module._id
+    return model.create(module);
 }
 export function deleteModule(moduleId) {
-    const { modules } = Database;
-    console.log("Module ID to delete:", moduleId)
-    console.log("Before deleting the module", Database.modules.length )
-    Database.modules = modules.filter((module) => module._id !== moduleId);
-    console.log("After deleting the module", Database.modules.length )
-    console.log(Database.modules.find((module) => module._id === moduleId))
+    return model.deleteOne({ _id: moduleId });
+    // const { modules } = Database;
+    // Database.modules = modules.filter((module) => module._id !== moduleId);
 }
 
 export function updateModule(moduleId, moduleUpdates) {
-    console.log(moduleUpdates);
-    const { modules } = Database;
-    const module = modules.find((module) => module._id === moduleId);
-    console.log(module);
-    Object.assign(module, moduleUpdates);
-    return module;
+    return model.updateOne({ _id: moduleId }, moduleUpdates);
+    // const { modules } = Database;
+    // const module = modules.find((module) => module._id === moduleId);
+    // Object.assign(module, moduleUpdates);
+    // return module;
 }
 
 
