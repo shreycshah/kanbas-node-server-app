@@ -15,7 +15,6 @@ const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING ||"mongodb://127.0
 mongoose.connect(CONNECTION_STRING);
 
 const app = express();
-console.log(process.env.NETLIFY_URL)
 app.use(
     cors({
         credentials: true,

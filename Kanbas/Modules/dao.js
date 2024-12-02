@@ -10,12 +10,10 @@ export function createModule(module) {
     // Database.modules = [...Database.modules, newModule];
     // Database.modules.push(newModule);
     // return newModule;
-    console.log("createModule", module);
     delete module._id
     return model.create(module);
 }
 export function deleteModule(moduleId) {
-    console.log("deleteModule", moduleId);
     return model.findByIdAndDelete(moduleId);
     // const { modules } = Database;
     // Database.modules = modules.filter((module) => module._id !== moduleId);
